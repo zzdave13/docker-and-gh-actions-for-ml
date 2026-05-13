@@ -1,0 +1,26 @@
+name: Lint
+
+on:
+  push:
+  pull_request:
+    type: [opened, reopened]
+  
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install  uv
+        uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
+      
+      - name: Set up Python
+        run: uv python install
+      
+      - name: Install project
+        run: uv sync --frozen
+      
+      - name: Lint
+        run: uv run poe lint
