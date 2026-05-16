@@ -3,7 +3,7 @@ name: Lint
 on:
   push:
   pull_request:
-    type: [opened, reopened]
+    types: [opened, reopened]
   
 jobs:
   lint:
